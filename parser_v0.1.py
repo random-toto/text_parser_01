@@ -6,9 +6,9 @@ l = os.listdir()
 #~ print(l)
 
 
-tlt = re.compile('Tout le Temps')
+tlt = re.compile('(Tout le (T)|(t)emps)|(TTT)')
 mat = re.compile('Matin')
-jr = re.compile('Journée')
+jr = re.compile('(Journée)|(Jour)')
 nt = re.compile('Nuit')
 ent = re.compile('^[0-9]+')
 
@@ -19,7 +19,7 @@ nuit = False
 
 
 print("""
-def Route3(periode_heure = 0):
+def Route16(periode_heure = 0):
     '''
     '''
     a = valid_heure(periode_heure)
@@ -128,8 +128,10 @@ if len(o) == 4:
                 #~ somme = 0
                 print("        if r <= ", round(valeur, 2),':' , sep = '')
                 print("            return ('", ele.strip(), "', ", sep = '', end = '')
-                if '-' in dic[ele][0]:
+                if '-' in dic[ele][0] and ',' not in dic[ele][0]:
                     print("randInt(", dic[ele][0].strip().split('-')[0], ',', dic[ele][0].strip().split('-')[1], '))', sep = '')
+                elif ',' in dic[ele][0]:
+                    print("randInt(", dic[ele][0].strip().split(',')[0], ',', dic[ele][0].strip().split(',')[1], '))', sep = '')
                 else:
                     print(dic[ele][0].strip(), ")", sep = '')                
         #~ print()
@@ -137,5 +139,4 @@ if len(o) == 4:
 elif len(o) == 3:
     print()
 #"""
-
 
